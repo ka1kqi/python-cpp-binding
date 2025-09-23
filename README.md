@@ -43,8 +43,10 @@ print(str(age))
 
 print(corelink.hello())
 corelink.hello_world()
+```
 
-#prints
+```
+#output
 Name: Kaikai age: 20
 20
 Hello from the corelink_sample_binding package, This code is written in python!
