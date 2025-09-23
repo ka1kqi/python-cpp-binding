@@ -12,7 +12,7 @@ This package exposes selected Corelink C++ APIs to Python.
 - Python ≥ 3.8
 - A C++17 compiler (Clang, GCC, or MSVC)
 - [CMake ≥ 3.15](https://cmake.org/)
-- `pip`, `setuptools`, and `wheel`
+- `pip`, `setuptools`, `wheel`, `Pybind11`
 
 ### Install from source
 
@@ -43,6 +43,9 @@ print(str(age))
 
 print(corelink.hello())
 corelink.hello_world()
+
+p.change_name("Arthur")
+print(p.get_person())
 ```
 
 ```
@@ -51,4 +54,5 @@ Name: Kaikai age: 20
 20
 Hello from the corelink_sample_binding package, This code is written in python!
 Hello from hello_world(), this code is written in cpp!
+Name: Arthur age: 20
 ```

@@ -18,20 +18,12 @@ target_include_directories(corelink PRIVATE ${CMAKE_SOURCE_DIR}/include)
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set(PY_PACKAGE_DIR ${CMAKE_SOURCE_DIR}/corelink)
-set(STUBS_DIR ${CMAKE_CURRENT_BINARY_DIR}/.stubs)
 
 #run stubgen if available
 add_custom_command(
     TARGET corelink POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR}/bindings
+    COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${PY_PACKAGE_DIR}
             ${Python3_EXECUTABLE} -m pybind11_stubgen corelink
-            --output-dir ${STUBS_DIR}
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${STUBS_DIR}/corelink-stubs/corelink.pyi
-            ${PY_PACKAGE_DIR}/corelink.pyi || true
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${STUBS_DIR}/corelink-stubs/__init__.pyi
-            ${PY_PACKAGE_DIR}/corelink.pyi || true
+            --output-dir ${PY_PACKAGE_DIR}
     COMMAND ${CMAKE_COMMAND} -E touch ${PY_PACKAGE_DIR}/py.typed
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${STUBS_DIR}
 )
