@@ -57,8 +57,8 @@ scikit_build_core-*
 # Stubgen / autocomplete artifacts
 # -------------------------------
 stubs/
-corelink_sample_binding/corelink_sample_binding.pyi
-corelink_sample_binding/py.typed
+corelink/corelink.pyi
+corelink/py.typed
 
 # -------------------------------
 # IDE / Editor
