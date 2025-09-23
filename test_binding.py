@@ -1,4 +1,4 @@
-import corelink_sample_binding as corelink
+import corelink
 
 p = corelink.Person("Kaikai", 20)
 

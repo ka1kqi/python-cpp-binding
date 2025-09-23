@@ -7,7 +7,7 @@ void hello_world();
 namespace py = pybind11;
 
 
-PYBIND11_MODULE(corelink_sample_binding,m) {
+PYBIND11_MODULE(corelink,m) {
     m.doc() = "Sample binding for hello_world()";
 
     m.def("hello_world", &hello_world, "prints hello world from cpp");

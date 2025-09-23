@@ -27,3 +27,26 @@ source venv/bin/activate
 
 # build and install
 pip install .
+```
+
+### Usage
+
+```Python
+import corelink
+
+p = corelink.Person("Kaikai", 20)
+
+print(p.get_person())
+
+age = p.get_age()
+print(str(age))
+
+print(corelink.hello())
+corelink.hello_world()
+
+#prints
+Name: Kaikai age: 20
+20
+Hello from the corelink_sample_binding package, This code is written in python!
+Hello from hello_world(), this code is written in cpp!
+```

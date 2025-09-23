@@ -4,7 +4,7 @@ requires = ["scikit-build-core>=0.8.0", "pybind11", "setuptools", "wheel", "pybi
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "corelink_sample_binding"
+name = "corelink"
 version = "0.1.0"
 description = "Python bindings for Corelink C++ client"
 authors = [{ name = "Kaikai", email = "axd2025@nyu.edu" }]

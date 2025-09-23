@@ -1,25 +1,37 @@
 # Build the Python extension
-pybind11_add_module(corelink_sample_binding pybind_module.cpp)
+pybind11_add_module(corelink pybind_module.cpp)
 
-install(TARGETS corelink_sample_binding DESTINATION corelink_sample_binding)
+set(PY_PACKAGE_DIR ${CMAKE_SOURCE_DIR}/corelink)
+
+set_target_properties(corelink PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY ${PY_PACKAGE_DIR}
+    RUNTIME_OUTPUT_DIRECTORY ${PY_PACKAGE_DIR}
+)
+
+install(TARGETS corelink DESTINATION ${PY_PACKAGE_DIR})
 
 # Link against corelink_cpp and pybind11
-target_link_libraries(corelink_sample_binding PRIVATE corelink_cpp)
+target_link_libraries(corelink PRIVATE corelink_cpp)
 
-target_include_directories(corelink_sample_binding PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(corelink PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-set(PY_PACKAGE_DIR ${CMAKE_SOURCE_DIR}/corelink_sample_binding)
+set(PY_PACKAGE_DIR ${CMAKE_SOURCE_DIR}/corelink)
+set(STUBS_DIR ${CMAKE_CURRENT_BINARY_DIR}/.stubs)
 
-# Run stubgen only if available
+#run stubgen if available
 add_custom_command(
-    TARGET corelink_sample_binding POST_BUILD
-    COMMAND ${Python3_EXECUTABLE} -m pybind11_stubgen corelink_sample_binding
-            --output-dir ${CMAKE_CURRENT_BINARY_DIR}/stubs
-    # try copying from both possible stubgen layouts
+    TARGET corelink POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR}/bindings
+            ${Python3_EXECUTABLE} -m pybind11_stubgen corelink
+            --output-dir ${STUBS_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_CURRENT_BINARY_DIR}/stubs/corelink_sample_binding/corelink_sample_binding.pyi
-            ${PY_PACKAGE_DIR}/corelink_sample_binding.pyi || true
+            ${STUBS_DIR}/corelink-stubs/corelink.pyi
+            ${PY_PACKAGE_DIR}/corelink.pyi || true
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${STUBS_DIR}/corelink-stubs/__init__.pyi
+            ${PY_PACKAGE_DIR}/corelink.pyi || true
     COMMAND ${CMAKE_COMMAND} -E touch ${PY_PACKAGE_DIR}/py.typed
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${STUBS_DIR}
 )

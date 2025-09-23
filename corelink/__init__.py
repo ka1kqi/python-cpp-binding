@@ -1,6 +1,5 @@
-# __init__.py
-
-from .corelink_sample_binding import *  # import everything from the C++ extension
+# corelink/__init__.py
+from .corelink import *
 
 # Example Python helper
 def hello():
