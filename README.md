@@ -52,7 +52,7 @@ print(p.get_person())
 #output
 Name: Kaikai age: 20
 20
-Hello from the corelink_sample_binding package, This code is written in python!
+Hello from the corelink package, This code is written in python!
 Hello from hello_world(), this code is written in cpp!
 Name: Arthur age: 20
 ```

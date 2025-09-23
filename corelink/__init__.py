@@ -1,4 +1,3 @@
-# corelink/__init__.py
 from .corelink import *
 
 # Example Python helper
