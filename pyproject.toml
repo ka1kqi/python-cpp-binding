@@ -1,0 +1,17 @@
+[build-system]
+# scikit-build-core runs CMake and ensures pybind11 is available
+requires = ["scikit-build-core>=0.8.0", "pybind11", "ninja"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "corelink_sample_binding"
+version = "0.1.0"
+description = "Python bindings for Corelink C++ client"
+authors = [{ name = "Kaikai", email = "axd2025@nyu.edu" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.scikit-build]
+cmake.verbose = true
+
