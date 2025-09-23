@@ -1,6 +1,6 @@
 [build-system]
 # scikit-build-core runs CMake and ensures pybind11 is available
-requires = ["scikit-build-core>=0.8.0", "pybind11", "ninja"]
+requires = ["scikit-build-core>=0.8.0", "pybind11", "setuptools", "wheel", "pybind11-stubgen"]
 build-backend = "scikit_build_core.build"
 
 [project]
@@ -15,3 +15,8 @@ requires-python = ">=3.8"
 [tool.scikit-build]
 cmake.verbose = true
 
+# include extra files in sdist (source distribution)
+sdist.include = [
+    "corelink/*.pyi",
+    "corelink/py.typed",
+]

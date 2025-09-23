@@ -2,9 +2,5 @@
 #include <hello_world.hpp>
 
 void hello_world() {
-    std:: cout << "hello world from hello_world()!" << std::endl;
-}
-
-int return_20() {
-    return 20;
+    std:: cout << "Hello from hello_world(), this code is written in cpp!" << std::endl;
 }
