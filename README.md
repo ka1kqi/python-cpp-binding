@@ -19,7 +19,7 @@ This package exposes selected Corelink C++ APIs to Python.
 Clone this repository and install into your Python environment:
 
 ```bash
-cd */sample_binding
+cd */python-cpp-binding
 
 # create & activate a venv (optional but recommended)
 python3 -m venv venv
